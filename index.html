@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Combien vous coûte un devis sans relance ?</title>
+<style>
+  :root{--ink:#12161c;--muted:#5b6673;--line:#e3e7ec;--accent:#b45309;--bg:#f7f8fa;--card:#fff}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+  .wrap{max-width:860px;margin:0 auto;padding:40px 20px 64px}
+  header{border-bottom:1px solid var(--line);padding-bottom:22px;margin-bottom:30px}
+  .kicker{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);font-weight:700}
+  h1{font-size:clamp(26px,4.4vw,40px);line-height:1.15;margin:10px 0 8px;letter-spacing:-.02em}
+  .sub{color:var(--muted);margin:0;max-width:620px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin:18px 0}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:640px){.grid{grid-template-columns:1fr}}
+  label{display:block;font-size:13px;font-weight:600;color:var(--muted);margin-bottom:6px}
+  input[type=number]{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:9px;font-size:18px;font-variant-numeric:tabular-nums;background:#fff;color:var(--ink)}
+  input[type=range]{width:100%;margin-top:8px;accent-color:var(--accent)}
+  .out{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:6px}
+  @media(max-width:640px){.out{grid-template-columns:1fr}}
+  .metric{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px}
+  .metric .v{font-size:clamp(24px,3.6vw,34px);font-weight:750;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+  .metric .l{font-size:13px;color:var(--muted);margin-top:2px}
+  .metric.hot{border-color:#f2c9a4;background:#fff8f1}
+  .metric.hot .v{color:var(--accent)}
+  .timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:8px}
+  @media(max-width:640px){.timeline{grid-template-columns:1fr 1fr}}
+  .step{border-left:3px solid var(--accent);padding:2px 0 2px 12px}
+  .step b{display:block;font-size:13px}
+  .step span{font-size:13px;color:var(--muted)}
+  .note{font-size:13px;color:var(--muted);margin-top:14px}
+  .cta{display:flex;flex-wrap:wrap;align-items:center;gap:14px;justify-content:space-between}
+  .btn{display:inline-block;background:var(--ink);color:#fff;text-decoration:none;padding:13px 20px;border-radius:10px;font-weight:650}
+  footer{margin-top:34px;padding-top:18px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="kicker">Second œuvre · 77</div>
+    <h1>Combien vous coûte un devis sans relance ?</h1>
+    <p class="sub">Un devis non relancé ne se perd pas visiblement. Il meurt en silence. Bougez les curseurs, le chiffre apparaît.</p>
+  </header>
+
+  <div class="card">
+    <div class="grid">
+      <div>
+        <label for="wk">Devis envoyés par semaine</label>
+        <input id="wk" type="number" min="1" max="60" value="8" inputmode="numeric">
+        <input id="wkr" type="range" min="1" max="40" value="8">
+      </div>
+      <div>
+        <label for="panier">Panier moyen d'un devis (€ HT)</label>
+        <input id="panier" type="number" min="200" max="50000" step="100" value="3000" inputmode="numeric">
+        <input id="panierr" type="range" min="500" max="20000" step="100" value="3000">
+      </div>
+      <div>
+        <label for="marge">Marge nette sur un chantier (%)</label>
+        <input id="marge" type="number" min="5" max="60" value="30" inputmode="numeric">
+        <input id="marger" type="range" min="5" max="60" value="30">
+      </div>
+      <div>
+        <label for="taux">Devis aujourd'hui relancés (%)</label>
+        <input id="taux" type="number" min="0" max="100" value="30" inputmode="numeric">
+        <input id="tauxr" type="range" min="0" max="100" value="30">
+      </div>
+    </div>
+  </div>
+
+  <div class="out">
+    <div class="metric"><div class="v" id="mSans">—</div><div class="l">devis sans relance par mois</div></div>
+    <div class="metric"><div class="v" id="mCA">—</div><div class="l">de chiffre d'affaires dormant</div></div>
+    <div class="metric"><div class="v" id="mMarge">—</div><div class="l">de marge dormante</div></div>
+    <div class="metric hot"><div class="v" id="mRecup">—</div><div class="l">récupérables si 1 devis sur 5 revient</div></div>
+  </div>
+
+  <div class="card">
+    <label style="margin-bottom:10px">Ce que fait la relance, sans vous</label>
+    <div class="timeline">
+      <div class="step"><b>J 0</b><span>Devis envoyé</span></div>
+      <div class="step"><b>J + 3</b><span>Relance douce</span></div>
+      <div class="step"><b>J + 7</b><span>Relance ferme</span></div>
+      <div class="step"><b>J + 14</b><span>Clôture ou rendez-vous</span></div>
+    </div>
+    <p class="note">La tâche tourne seule. Vous ne voyez que les réponses et les rendez-vous.</p>
+  </div>
+
+  <div class="card cta">
+    <div>
+      <b>Audit 490 € HT, 5 jours.</b><br>
+      <span style="color:var(--muted)">Trois tâches chiffrées en heures et en euros. Une maquette qui tourne.</span>
+    </div>
+    <a class="btn" href="mailto:notitiacorp@gmail.com?subject=Audit%20relance%20de%20devis&body=Bonjour%2C%20je%20souhaite%20un%20audit%20sur%20la%20relance%20de%20mes%20devis.%20Mon%20entreprise%20%3A%20">Demander l'audit</a>
+  </div>
+
+  <footer>
+    Simulateur. Les montants sont calculés à partir de vos saisies, pas des résultats d'un client. Le taux de retour de 1 devis sur 5 est une hypothèse de travail, pas une promesse.
+  </footer>
+</div>
+<script>
+  const ids = ['wk','panier','marge','taux'];
+  const eur = new Intl.NumberFormat('fr-FR',{style:'currency',currency:'EUR',maximumFractionDigits:0});
+  function sync(a,b){ const x=document.getElementById(a), y=document.getElementById(b);
+    x.addEventListener('input',()=>{y.value=x.value;calc()});
+    y.addEventListener('input',()=>{x.value=y.value;calc()}); }
+  sync('wk','wkr'); sync('panier','panierr'); sync('marge','marger'); sync('taux','tauxr');
+  function calc(){
+    const wk=+document.getElementById('wk').value||0;
+    const panier=+document.getElementById('panier').value||0;
+    const marge=+document.getElementById('marge').value||0;
+    const taux=+document.getElementById('taux').value||0;
+    const mois=wk*4.33;
+    const sans=mois*(1-taux/100);
+    const ca=sans*panier;
+    const mg=ca*marge/100;
+    const recup=mg*0.2;
+    document.getElementById('mSans').textContent=Math.round(sans).toLocaleString('fr-FR');
+    document.getElementById('mCA').textContent=eur.format(Math.round(ca));
+    document.getElementById('mMarge').textContent=eur.format(Math.round(mg));
+    document.getElementById('mRecup').textContent=eur.format(Math.round(recup));
+  }
+  ids.forEach(i=>document.getElementById(i).addEventListener('input',calc));
+  calc();
+</script>
+</body>
+</html>
